@@ -1,4 +1,4 @@
-#include<stdlib.h>
+п»ї#include<stdlib.h>
 #include<stdio.h>
 #include<iostream>
 #include<locale.h>
@@ -9,12 +9,12 @@ void main()
 {
 	srand(time(NULL));
 	setlocale(LC_ALL, "Rus");
-	printf("Работа содержит 4 задания.\n");
-	printf("Для завершения наберите 0.\n");
+	printf("Р Р°Р±РѕС‚Р° СЃРѕРґРµСЂР¶РёС‚ 4 Р·Р°РґР°РЅРёСЏ.\n");
+	printf("Р”Р»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РЅР°Р±РµСЂРёС‚Рµ 0.\n");
 	int n;
 	do
 	{
-		printf("Введите номер задания: ");
+		printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·Р°РґР°РЅРёСЏ: ");
 		scanf("%d", &n);
 		switch (n)
 		{
@@ -24,7 +24,7 @@ void main()
 				NOTE1 *BLOCK = createNote(&count);
 				NOTE1 *temp = createNote(&tempPr);
 				lines();
-				printf("***  Телефонный справочник.  ***\n");
+				printf("***  РўРµР»РµС„РѕРЅРЅС‹Р№ СЃРїСЂР°РІРѕС‡РЅРёРє.  ***\n");
 				lines();
 					for (int i = 0; i < count - 1; i++)
 					{
@@ -41,7 +41,7 @@ void main()
 				
 				printInfoNote(BLOCK, count);
 				lines();
-				printf("Введите месяц рождения: ");				
+				printf("Р’РІРµРґРёС‚Рµ РјРµСЃСЏС† СЂРѕР¶РґРµРЅРёСЏ: ");				
 				scanf("%d", &month);
 				lines();
 				for (int i = 0; i < count; i++)
@@ -54,7 +54,7 @@ void main()
 				}
 				lines();
 				if (!k)
-					printf("Таких людей нет.\n");
+					printf("РўР°РєРёС… Р»СЋРґРµР№ РЅРµС‚.\n");
 				system("pause");
 				system("cls");
 			}break;
