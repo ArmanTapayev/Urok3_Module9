@@ -109,6 +109,7 @@ void main()
 				lines();
 				neg(ab, count);
 				lines();
+				printf("Получение информации по номеру телефона.\n");
 				printf("Введите номер телефона: ");
 				scanf("%lld", &phn);
 				findNbr(ab, phn, count);
