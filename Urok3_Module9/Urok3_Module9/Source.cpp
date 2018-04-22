@@ -61,7 +61,92 @@ void main()
 
 			case 2:
 			{
+				int count = 10,sum=0, tempPr=1;
+				TOVAR *SPISOK = createProd(&count);
+				TOVAR *temp = createProd(&tempPr);
+				printInfoPrd(SPISOK, count);
+				for (int i = 0; i < count - 1; i++)
+				{
+					for (int j = i + 1; j < count; j++)
+					{
+						if (SPISOK[i].price > SPISOK[j].price)
+						{
+							*temp = SPISOK[i];
+							SPISOK[i] = SPISOK[j];
+							SPISOK[j] = *temp;
+						}
+					}
+				}
+				printInfoPrd(SPISOK, count);
+				for (int i = 0; i < count; i++)
+				{
+					sum += (SPISOK + i)->price;
+					if (abs(((SPISOK + i)->date.month)- 4)>10 && (SPISOK+i)->date.year<=2017)
+					{
+						printInfoPrd((SPISOK + i), 1);
+					}
+				}
+				printf("Средняя стоимость товара: %0.2f\n", (float)sum / count);
+				system("pause");
+				system("cls");
+			}break;
 
+			case 3:
+			{
+				int count = 10;
+				char *place = (char*)malloc(5 * sizeof(char));
+				MARSHRUT *mrsh = createMrsh(&count);
+				lines();
+				printf("Список всех маршрутов:\n");
+				lines();
+				printInfoMrs(mrsh, count);
+				lines();
+				maxLen(mrsh, count);
+				lines();
+				printf("Сортировка маршрутов пономерам:\n");
+				sort(mrsh, count);
+				lines();
+				printInfoMrs(mrsh, count);
+				lines();
+				printf("Введите начальный или конечный пункт: ");
+				scanf("%s", place);
+				lines();
+				findPlace(mrsh, place, count);
+				lines();
+				system("pause");
+				system("cls");
+			}break;
+
+			case 4:
+			{
+				int count = 10;
+				long long phn;
+				ABON *ab = createAbn(&count);
+				lines();
+				printf("Список всех абонентов:\n");
+				lines();
+				printInfoAbn(ab, count);
+				lines();
+				sortAb(ab, count);
+				printf("Записи по алфавиту :\n");
+				lines();
+				printInfoAbn(ab, count);
+				lines();
+				printf("Добавление 20 гр. на счета абонентов, которых подключили более 10 лет :\n");
+				add(ab, count);
+				lines();
+				printInfoAbn(ab, count);
+				lines();
+				printf("Абоненты, у которых сумма на счету отрицательная после вычета начислений :\n");
+				lines();
+				neg(ab, count);
+				lines();
+				printf("Введите номер телефона: ");
+				scanf("%lld", &phn);
+				findNbr(ab, phn, count);
+				lines();
+				system("pause");
+				system("cls");
 			}break;
 
 	

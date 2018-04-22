@@ -29,5 +29,14 @@
     <ClInclude Include="totalService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="02_TOVAR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="03_MARSHRUT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="04_ABON.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
