@@ -21,72 +21,40 @@ void main()
 			case 1:
 			{
 				int count = 9, tempPr=1, month, k=0;
-				NOTE1 *BLOCK = createNote(&count);
-				NOTE1 *temp = createNote(&tempPr);
+				NOTE1 *BLOCK = createNote(&count);				
 				lines();
 				printf("***  Телефонный справочник.  ***\n");
 				lines();
-					for (int i = 0; i < count - 1; i++)
-					{
-						for (int j = i + 1; j < count; j++)
-						{
-							if (strcmp(BLOCK[i].Nm.lName, BLOCK[j].Nm.lName)>0)
-							{
-								*temp = BLOCK[i];
-								BLOCK[i] = BLOCK[j];
-								BLOCK[j] = *temp;
-							}
-						}
-					}
-				
 				printInfoNote(BLOCK, count);
 				lines();
+				sortN(BLOCK, count);
+				printf("Записи, упорядоченные по алфавиту :\n");
+				lines();
+				printInfoNote(BLOCK, count);
+				lines();
+				printf("Получение информации по месяцу рождения.\n");
 				printf("Введите месяц рождения: ");				
 				scanf("%d", &month);
 				lines();
-				for (int i = 0; i < count; i++)
-				{
-					if (BLOCK[i].btd.month == month)
-					{
-						printInfoNote(&BLOCK[i], 1);
-						k++;
-					}
-				}
-				lines();
-				if (!k)
-					printf("Таких людей нет.\n");
+				searchNum(BLOCK, count, month);
 				system("pause");
 				system("cls");
 			}break;
 
 			case 2:
 			{
-				int count = 10,sum=0, tempPr=1;
+				int count = 10;
 				TOVAR *SPISOK = createProd(&count);
-				TOVAR *temp = createProd(&tempPr);
+				lines();
+				printf("Список всех товаров:\n");
+				lines();
 				printInfoPrd(SPISOK, count);
-				for (int i = 0; i < count - 1; i++)
-				{
-					for (int j = i + 1; j < count; j++)
-					{
-						if (SPISOK[i].price > SPISOK[j].price)
-						{
-							*temp = SPISOK[i];
-							SPISOK[i] = SPISOK[j];
-							SPISOK[j] = *temp;
-						}
-					}
-				}
+				lines();
+				printf("Сортировка по возрастанию стоимости товаров:\n");
+				lines();
+				sortMrs(SPISOK, count);
 				printInfoPrd(SPISOK, count);
-				for (int i = 0; i < count; i++)
-				{
-					sum += (SPISOK + i)->price;
-					if (abs(((SPISOK + i)->date.month)- 4)>10 && (SPISOK+i)->date.year<=2017)
-					{
-						printInfoPrd((SPISOK + i), 1);
-					}
-				}
-				printf("Средняя стоимость товара: %0.2f\n", (float)sum / count);
+				avrMrs(SPISOK, count);
 				system("pause");
 				system("cls");
 			}break;
@@ -103,7 +71,7 @@ void main()
 				lines();
 				maxLen(mrsh, count);
 				lines();
-				printf("Сортировка маршрутов пономерам:\n");
+				printf("Сортировка маршрутов по номерам:\n");
 				sort(mrsh, count);
 				lines();
 				printInfoMrs(mrsh, count);
@@ -148,9 +116,6 @@ void main()
 				system("pause");
 				system("cls");
 			}break;
-
-	
-
 		}
 	} while (n != 0);
 }

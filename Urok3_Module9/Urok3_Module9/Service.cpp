@@ -67,12 +67,47 @@ NOTE1 *createNote(int *count)
 	return nt;
 }
 
+void sortN(NOTE1 *BLOCK, int len)
+{
+	int tempPr = 1;
+	NOTE1 *temp = createNote(&tempPr);
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = i + 1; j < len; j++)
+		{
+			if (strcmp(BLOCK[i].Nm.lName, BLOCK[j].Nm.lName)>0)
+			{
+				*temp = BLOCK[i];
+				BLOCK[i] = BLOCK[j];
+				BLOCK[j] = *temp;
+			}
+		}
+	}
+}
+
+void searchNum(NOTE1 *BLOCK, int len, int month)
+{
+	int k = 0;
+	for (int i = 0; i < len; i++)
+	{
+		if (BLOCK[i].btd.month == month)
+		{
+			printInfoNote(&BLOCK[i], 1);
+			k++;
+		}
+	}
+	lines();
+	if (!k)
+	printf("Таких людей нет.\n");
+}
+
+
 /* Задание 2 */
 void generateDatePrd(DATA *date)
 {
 	date->day = 1 + rand() % 31;
 	date->month = 1 + rand() % 12;
-	date->year = 2016 + rand() % 2;
+	date->year = 2015 + rand() % 3;
 }
 void printInfoPrd(TOVAR *prd, int len)
 {
@@ -110,6 +145,44 @@ TOVAR *createProd(int *count)
 		exit(1);
 	}
 	return prd;
+}
+
+void sortMrs(TOVAR *mrs, int len)
+{
+	int tempPr = 1;
+	TOVAR *temp = createProd(&tempPr);
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = i + 1; j < len; j++)
+		{
+			if ((mrs+i)->price >(mrs + j)->price)
+			{
+				*temp = *(mrs + i);
+				*(mrs + i) = *(mrs + j);
+				*(mrs + j) = *temp;
+			}
+		}
+	}
+}
+
+void avrMrs(TOVAR *mrs, int len)
+{
+	int sum = 0;
+	lines();
+	printf("Сведение о товарах, поступивших более 10 месяцев назад:\n");
+	lines();
+	for (int i = 0; i < len; i++)
+	{
+		sum += (mrs + i)->price;
+		//if (abs(((mrs + i)->date.month) - 4)>10 && (mrs + i)->date.year <= 2017)
+		if (((mrs + i)->date.month<6 && (mrs + i)->date.month>=1 && (mrs + i)->date.year == 2017) || (mrs + i)->date.year <= 2016)
+		{
+			printInfoPrd((mrs + i), 1);
+		}
+	}
+	lines();
+	printf("Средняя стоимость товара: %0.2f\n", (float)sum / len);
+	lines();
 }
 
 /* Задание 3 */
